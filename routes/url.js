@@ -10,8 +10,6 @@ router.use(authKontrol);
 //shortened url 
 router.post("/",urlKısaltma)
 
-// //redirect to original url
-// router.get("/:shortURL",urlYonlendirme)
 
 //list urls
 router.get("/list/:id",urlListeleme)

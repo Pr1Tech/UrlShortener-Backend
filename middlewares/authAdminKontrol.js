@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const Admin = require("../models/adminModels");
 
-const authKontrol = async (req, res, next) => {
+const authAdminKontrol = async (req, res, next) => {
     
     const { authorization } = req.headers;
 
@@ -25,4 +25,4 @@ const authKontrol = async (req, res, next) => {
     }
 }
 
-module.exports = authKontrol;
+module.exports = authAdminKontrol;

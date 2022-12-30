@@ -43,6 +43,17 @@ const urlListeleme=async(req,res)=>{
     }
 }
 
+const urlDelete=async(req,res)=>{
+    try {
+        const url =await urlModel.findByIdAndDelete({_id:req.params.id});
+        res.status(200).json({message:"url silindi"})
+    }
+    catch (error) {
+        res.status(400).json({hata:error.message})
+    }
+}
+
+
 //shortener function
 const shortener=(specialURL)=>{
     const characters="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
