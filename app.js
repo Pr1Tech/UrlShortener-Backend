@@ -18,9 +18,7 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.use(cors({
-    origin:"https://syn-shortener.netlify.app/"
-}));
+app.use(cors());
 
 
 app.use("/api/redirect",redirectRouter)
