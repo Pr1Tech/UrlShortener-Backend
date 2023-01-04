@@ -18,7 +18,7 @@ const urlSchema=Schema({
     specialURL:{
         type:String
     },
-    end_time:{
+    expirationTime:{
         type:Date
     },
     clicks: {
@@ -35,6 +35,24 @@ const urlSchema=Schema({
         default:true
     }
 
+},{
+    expires: 'expirationTime'
 })
+
+
+urlSchema.statics.urlKısaltma=async function(original_url,expirationTime,date,specialURL){
+    if (original_url==="" || expirationTime==="" ) {
+        throw new Error("Lütfen tüm alanları doldurunuz")
+    }
+    if (expirationTime<=date) {
+        throw new Error("Lütfen geçerli bir tarih giriniz")
+    }
+    if (validator.isURL(original_url)) {
+        throw new Error("Lütfen geçerli bir URL giriniz")
+    }
+    if (validator.isLength(specialURL,{max:10})) {
+        throw new Error("Özel URL 10 karakterden fazla olamaz")
+    }
+}
 
 module.exports=mongoose.model("url",urlSchema)
