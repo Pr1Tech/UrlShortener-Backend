@@ -19,7 +19,8 @@ const urlSchema=Schema({
         type:String
     },
     end_time:{
-        type:Date
+        type:Date,
+        expires: '0s',
     },
     clicks: {
         type: Number,
@@ -35,8 +36,6 @@ const urlSchema=Schema({
         default:true
     }
 
-},{
-    expires: 'end_time'
 })
 
 
