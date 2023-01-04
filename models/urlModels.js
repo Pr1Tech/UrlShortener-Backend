@@ -18,7 +18,7 @@ const urlSchema=Schema({
     specialURL:{
         type:String
     },
-    expirationTime:{
+    end_time:{
         type:Date
     },
     clicks: {
@@ -36,15 +36,15 @@ const urlSchema=Schema({
     }
 
 },{
-    expires: 'expirationTime'
+    expires: 'end_time'
 })
 
 
-urlSchema.statics.urlKısaltma=async function(original_url,expirationTime,date,specialURL){
-    if (original_url==="" || expirationTime==="" ) {
+urlSchema.statics.urlKısaltma=async function(original_url,end_time,date,specialURL){
+    if (original_url==="" || end_time==="" ) {
         throw new Error("Lütfen tüm alanları doldurunuz")
     }
-    if (expirationTime<=date) {
+    if (end_time<=date) {
         throw new Error("Lütfen geçerli bir tarih giriniz")
     }
     if (validator.isURL(original_url)) {
