@@ -7,7 +7,7 @@ const urlKısaltma = async (req, res) => {
         const url = await urlModel.create({ original_url, shortened_url, specialURL, created_by, end_time });
         res.status(200).json({original_url, shortened_url, specialURL, created_by, end_time });
     } catch (error) {
-        res.status(400).json({ hata: error.message });
+        res.status(400).json({ message: error.message });
     }
 }
 
@@ -20,10 +20,10 @@ const urlYonlendirme=async(req,res)=>{
             return res.status(200).json(url.original_url);
         }
         else{
-            return res.status(404).json({hata:"url bulunamadı"})
+            return res.status(404).json({message:"url bulunamadı"})
         }
     } catch (error) {
-        res.status(400).json({hata:error.message})
+        res.status(400).json({message:error.message})
     }
 }
 
@@ -35,11 +35,11 @@ const urlListeleme=async(req,res)=>{
             return res.status(200).json(url)
         }
         else{
-            return res.status(404).json({hata:"kullanıcı ya ait bulunamadı"})
+            return res.status(404).json({message:"kullanıcı ya ait bulunamadı"})
         }
     }
     catch (error) {
-        res.status(400).json({hata:error.message})
+        res.status(400).json({message:error.message})
     }
 }
 
@@ -49,7 +49,7 @@ const urlDelete=async(req,res)=>{
         res.status(200).json({message:"url silindi"})
     }
     catch (error) {
-        res.status(400).json({hata:error.message})
+        res.status(400).json({message:error.message})
     }
 }
 
