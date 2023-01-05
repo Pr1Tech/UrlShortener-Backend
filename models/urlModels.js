@@ -41,16 +41,16 @@ const urlSchema=Schema({
 
 
 urlSchema.statics.urlKısaltma=async function(original_url,end_time,date,specialURL){
-    if (original_url==="" || end_time==="" ) {
+    if (!original_url || !end_time) {
         throw new Error("Lütfen tüm alanları doldurunuz")
     }
     if (end_time<=date) {
         throw new Error("Lütfen geçerli bir tarih giriniz")
     }
-    if (validator.isURL(original_url)) {
+    if (!validator.isURL(original_url)) {
         throw new Error("Lütfen geçerli bir URL giriniz")
     }
-    if (validator.isLength(specialURL,{max:10})) {
+    if (!validator.isLength(specialURL,{max:10})) {
         throw new Error("Özel URL 10 karakterden fazla olamaz")
     }
 }
