@@ -40,11 +40,11 @@ const urlSchema=Schema({
 })
 
 
-urlSchema.statics.urlKısaltma=async function(original_url,end_time,date,specialURL){
-    if (!original_url || !end_time) {
+urlSchema.statics.urlKısalt=async function(original_url, shortened_url, specialURL, created_by, end_time){
+    if (original_url==="" || end_time==="") {
         throw new Error("Lütfen tüm alanları doldurunuz")
     }
-    if (!validator.isDate(end_time)) {
+    if (!validator.isAfter(end_time,date)) {
         throw new Error("Lütfen geçerli bir tarih giriniz")
     }
     if (!validator.isURL(original_url)) {
@@ -53,6 +53,8 @@ urlSchema.statics.urlKısaltma=async function(original_url,end_time,date,special
     if (!validator.isLength(specialURL,{max:10})) {
         throw new Error("Özel URL 10 karakterden fazla olamaz")
     }
+    const url = await this.create({ original_url, shortened_url, specialURL, created_by, end_time });
+    return url;
 }
 
 module.exports=mongoose.model("url",urlSchema)

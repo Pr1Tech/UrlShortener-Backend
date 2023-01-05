@@ -4,7 +4,9 @@ const urlKısaltma = async (req, res) => {
     const { original_url, created_by, specialURL, end_time } = req.body;
     const shortened_url = shortener(specialURL);
     try {
-        const url = await urlModel.create({ original_url, shortened_url, specialURL, created_by, end_time });
+        
+        await urlModel.urlKısalt(original_url, shortened_url, specialURL, created_by, end_time);
+        
         res.status(200).json({original_url, shortened_url, specialURL, created_by, end_time });
     } catch (error) {
         res.status(400).json({ message: error.message });
