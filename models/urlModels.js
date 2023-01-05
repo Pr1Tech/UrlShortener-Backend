@@ -44,7 +44,7 @@ urlSchema.statics.urlKısaltma=async function(original_url,end_time,date,special
     if (!original_url || !end_time) {
         throw new Error("Lütfen tüm alanları doldurunuz")
     }
-    if (end_time<=date) {
+    if (!validator.isDate(end_time)) {
         throw new Error("Lütfen geçerli bir tarih giriniz")
     }
     if (!validator.isURL(original_url)) {
